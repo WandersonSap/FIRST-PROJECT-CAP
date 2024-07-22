@@ -1,0 +1,87 @@
+@server = http://localhost:4004
+@auth = Authorization: Basic alice:
+
+### Main.Customers
+GET {{server}}/main/Customers
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+GET {{server}}/main/Customers?$expand=orders
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+GET {{server}}/main/Customers?$select=name&$expand=orders
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+GET {{server}}/main/Customers?$expand=orders($expand=nf)
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+GET {{server}}/main/Customers?$expand=orders($select=amount;$expand=nf)
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+GET {{server}}/main/Customers?$expand=orders($select=amount;$expand=nf($select=id_fiscal))
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+DELETE  {{server}}/main/Customers(4365fd8a-9d11-452e-b1ab-d64a1db8eee3)
+Content-Type: application/json
+{{auth}}
+
+### Main.Customers
+POST  {{server}}/main/Customers
+Content-Type: application/json
+{{auth}}
+
+{
+  "name": "Wanderson C. Santos",
+  "age": 46
+}
+
+### Main.Orders
+GET {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+### Main.Orders
+GET {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+### Main.Orders
+GET {{server}}/main/Orders?$expand=customer
+Content-Type: application/json
+{{auth}}
+
+### Main.Orders
+GET {{server}}/main/Orders?$expand=nf
+Content-Type: application/json
+{{auth}}
+
+### Main.Orders
+POST  {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+{
+  "amount" :330.00,
+  "customer_ID": "4365fd8a-9d11-452e-b1ab-d64a1db8eee3"
+}
+
+### Main.Nfs
+GET {{server}}/main/Nfs
+Content-Type: application/json
+{{auth}}
+
+### Main.Nfs expand para order
+GET {{server}}/main/Nfs?$expand=order
+Content-Type: application/json
+{{auth}}
